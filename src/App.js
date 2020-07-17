@@ -1,19 +1,13 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import './App.css';
 import Lottie from 'react-lottie';
 import animationData from './lottie/15108-confetti-banner.json';
 import animationData2 from './lottie/11272-party-popper.json';
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import gui from './lottie/guipgn.png';
 import isa from './lottie/isapgn.png';
 import coracao from './lottie/coracao.png';
-import coracaoazul from './lottie/coracaoazul.png';
-import coracaoama from './lottie/coracaoama.png';
 import musica from './lottie/masculino-feminino.mp3';
-import silence from './lottie/silence.mp3';
-
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
 
 function App() {
   const defaultOptions = {
@@ -32,7 +26,7 @@ function App() {
   const targetRef = useRef();
   const divRef = useRef();
   const [dimensions, setDimensions] = useState({ width:0, height: 0 });
-  const [info, setInfo] = useState(['obrigado pelo meio ano juntos', 'obrigado pelos 6 meses juntos','obrigado pelo 26,0714284643 semanas juntos', 'obrigado pelos 182,5 dias juntos', 'obrigado pelas 4379,99998199 horas juntos','obrigado pelos 262799,99891940003727 minutos juntos', 'obrigado pelos 15767999,935164004564 segundos juntos']);
+  const [info] = useState(['obrigado pelo meio ano juntos', 'obrigado pelos 6 meses juntos','obrigado pelas 26,0714284643 semanas juntos', 'obrigado pelos 182,5 dias juntos', 'obrigado pelas 4379,99998199 horas juntos','obrigado pelos 262799,99891940003727 minutos juntos', 'obrigado pelos 15767999,935164004564 segundos juntos']);
   const [counter, setCounter] = useState(0);
   useLayoutEffect(() => {
     if (targetRef.current) {
@@ -43,10 +37,12 @@ function App() {
     }
   }, []);
 
-  const executeScroll = () => scrollToRef(divRef)
+  useEffect(() => {
+    document.title = "Carta de 6 meses"
+ }, []);
 
   const changeInfo = () => {
-    if(counter == 6){
+    if(counter === 6){
       setCounter(0);
     } else {
       setCounter(counter+1);
